@@ -17,3 +17,7 @@ body, html {
 
   padding: 15px; 
 }
+
+.header {
+  margin: 0;
+}
