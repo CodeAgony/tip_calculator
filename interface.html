@@ -9,11 +9,11 @@
 <body>
   <div class="container">
     <div class="main-card">
-      <h1 class="header">TIP CALCULATOR</h1>
+      <h1 id="header">TIP CALCULATOR</h1>
       <p>How much is your bill?</p>
-      <input class="billamt" type="text" placeholder="Bill amount" maxlength="7" pattern="\d*">
+      <input id="billamt" type="text" placeholder="Bill amount" maxlength="7" pattern="\d*">
       <p>How was your service?</p>
-      <select class="service">
+      <select id="service">
         <option value="excellent">Excellent!</option>
         <option value="great">Great!</option>
         <option value="as_it_should_be">Just as it should be</option>
@@ -21,8 +21,8 @@
         <option value="disgusting">Disgusting!</option>
       </select>
       <p>How many people are sharing the bill?</p>
-      <input class="people" type="text" placeholder="Number of people" type="text" maxlength="2" pattern="\d*">><br>
-      <button class="calc">CALCULATE!</button>
+      <input id="people" type="text" placeholder="Number of people" type="text" maxlength="2" pattern="\d*"><br>
+      <button id="calc">CALCULATE!</button>
     </div>
   </div>
 </body>
