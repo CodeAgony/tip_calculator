@@ -30,7 +30,6 @@ const suggestTip = function(){
   let people = document.getElementById('people').value;
 
   let suggestion = ((billamt * satisfactionIndex) / people).toFixed(2);
-  console.log(billamt, satisfactionIndex, people, suggestion);
 }
 
 document.addEventListener('DOMContentLoaded', initiate);
