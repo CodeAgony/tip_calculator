@@ -1,37 +1,36 @@
 const initiate = function(){
+  document.getElementById('calc').addEventListener('click', suggestTip);
   document.getElementById('service').addEventListener('change', servSatisfaction);
-  document.getElementById('calc').addEventListener('click', doNothing);
+  // document.getElementById('billamt').addEventListener('input', doNothing);
+  // document.getElementById('people').addEventListener('input', doNothing);
 }
-
-let billamt = document.getElementById('billamt');
-let service = document.getElementById('service');
-let people = document.getElementById('people');
-
-const doNothing = function(){
-  console.log("do nothing");
-} 
 
 //Define a tip amount multiplier based on user choice
 const servSatisfaction = function(e){
   switch(e.target.value) {
     case 'excellent':
       console.log("exc");
-      return 1.7
+      return satisfactionIndex = 1.7
     case 'great':
       console.log("great");
-      return 1.5
+      return satisfactionIndex = 1.5
     case 'unsatisfactory':
       console.log("unsatisfactory");
-      return 0.7
+      return satisfactionIndex = 0.7
     default: 
       console.log("default");
-      return 1
+      return satisfactionIndex = 1
   }
 }   
 
 //Suggest a tip given the formula: (billamt * service) / people
-// const suggestTip(){
-//   let suggestion = (billamt.value * service) / people
-// }
+const suggestTip = function(){
+  let billamt = document.getElementById('billamt').value;
+  let service = document.getElementById('service').value;
+  let people = document.getElementById('people').value;
+
+  let suggestion = ((billamt * satisfactionIndex) / people).toFixed(2);
+  console.log(billamt, satisfactionIndex, people, suggestion);
+}
 
 document.addEventListener('DOMContentLoaded', initiate);
