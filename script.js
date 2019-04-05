@@ -25,7 +25,7 @@ const servSatisfaction = function(e){
 
 //Suggest a tip given the formula: (billamt * service) / people
 const suggestTip = function(){
-  let billamt = document.getElementById('billamt').value;
+  let billamt = document.getElementById('billamt').value.replace(/,/g, '.');
   let service = document.getElementById('service').value;
   let people = document.getElementById('people').value;
 
