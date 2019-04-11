@@ -1,8 +1,6 @@
 const initiate = function(){
   document.getElementById('calc').addEventListener('click', suggestTip);
   document.getElementById('service').addEventListener('change', servSatisfaction);
-  // document.getElementById('billamt').addEventListener('input', doNothing);
-  // document.getElementById('people').addEventListener('input', doNothing);
 }
 
 //Define a tip amount multiplier based on user choice
