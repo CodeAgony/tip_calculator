@@ -29,8 +29,7 @@ const suggestTip = function(){
   let service = document.getElementById('service').value;
   let people = document.getElementById('people').value;
 
-  suggestion = alert((((billamt / 100 * 15)  * satisfactionIndex) / people).toFixed(2))
-
+  let suggestion = alert((((billamt / 100 * 15)  * satisfactionIndex) / people).toFixed(2));
   return suggestion;
 }
 
