@@ -28,7 +28,8 @@ let satisfactionIndex = 1.5
 const suggestTip = function(){
   let billamt = document.getElementById('billamt').value.replace(/,/g, '.');
   let people = document.getElementById('people').value;
-
+  
+  //Take 15% as widely recommended tip amount
   let suggestion = (((billamt / 100 * 15)  * satisfactionIndex) / people);
   const alrt = alert(`Suggested tip amount for each person is $${suggestion.toFixed(2)}`);
   return alrt;
