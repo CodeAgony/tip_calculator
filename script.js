@@ -21,6 +21,9 @@ const servSatisfaction = function(e){
   }
 }   
 
+//If servSatisfaction doesn't run, use default value corresponding to 'great'
+let satisfactionIndex = 1.5
+
 //Suggest a tip given the formula: (billamt * service) / people
 const suggestTip = function(){
   let billamt = document.getElementById('billamt').value.replace(/,/g, '.');
