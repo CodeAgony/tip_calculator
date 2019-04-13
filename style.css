@@ -1,12 +1,8 @@
 html {
   height: 100%;
-  display: grid;
-}
-
-.container {
-  margin: auto;
-  border: 3px solid black;
-  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .main-card {
@@ -14,7 +10,9 @@ html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
+  margin: auto;
+  border: 3px solid black;
+  border-radius: 5px;
   padding: 15px; 
 }
 
