@@ -3,9 +3,12 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-image: url("videoblocks-dollar-signs-on-black-background_beimtxwpe_thumbnail-full01.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
-.main-card {
+#main-card {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -14,8 +17,12 @@ html {
   border: 3px solid black;
   border-radius: 5px;
   padding: 15px; 
+  background-color: #fff40087;
 }
 
-.header {
-  margin: 0;
+#header {
+  padding: 0px 10px 0px 10px;
+  margin: 0px;
+  background-color: orange;
+  border-radius: 10px;
 }
