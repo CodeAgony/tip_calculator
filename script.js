@@ -31,8 +31,16 @@ const suggestTip = function(){
   
   //Take 15% as widely recommended tip amount
   let suggestion = (((billamt / 100 * 15)  * satisfactionIndex) / people);
-  const alrt = alert(`Suggested tip amount for each person is $${suggestion.toFixed(2)}`);
-  return alrt;
+
+  //Output the suggestion in a new paragraph
+  const showOutput = function(suggestion){
+    const addOutput = document.createElement("p");
+    const card = document.getElementById("main-card");
+    const output = card.appendChild(addOutput).innerHTML = `Suggested tip amount for each person is ${suggestion.toFixed(2)}`;
+    output.id = "output";
+    console.log("Node created");
+  }
+  showOutput(suggestion);
 }
 
 document.addEventListener('DOMContentLoaded', initiate);
