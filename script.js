@@ -36,7 +36,9 @@ const suggestTip = function(){
   const showOutput = function(suggestion){
     const newParagraph = document.createElement("p");
     const card = document.getElementById("main-card");
-    const output = card.appendChild(addOutput).innerHTML = `Suggested tip amount for each person is ${suggestion.toFixed(2)}`;
+
+    //Add new paragraph to contain the suggestion
+    output = card.appendChild(newParagraph);
     output.id = "output";
     console.log("Node created");
   }
