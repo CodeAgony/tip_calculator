@@ -36,11 +36,18 @@ const suggestTip = function(){
   const showOutput = function(suggestion){
     const newParagraph = document.createElement("p");
     const card = document.getElementById("main-card");
-
-    //Add new paragraph to contain the suggestion
-    output = card.appendChild(newParagraph);
-    output.id = "output";
-    console.log("Node created");
+    const para = document.getElementById("output")
+    //Prevent multiple paragraphs
+    if (card.contains(para)){
+      console.log("Some output already. Rewriting");
+      para.innerHTML = `Suggested tip amount for each person is $${suggestion.toFixed(2)}`;
+    } else {
+      //Add new paragraph to contain the suggestion
+      const para = card.appendChild(newParagraph);
+      para.id = "output";
+      para.innerHTML = `Suggested tip amount for each person is $${suggestion.toFixed(2)}`;
+      console.log("Node created");
+    }
   }
   showOutput(suggestion);
 }
