@@ -8,7 +8,7 @@ html {
   background-repeat: no-repeat;
 }
 
-.main-card {
+#main-card {
   display: flex;
   flex-direction: column;
   justify-content: center;
