@@ -25,31 +25,31 @@ const calculateTip = function(billAmount, people, satisfactionValue) {
   return billAmount * tipPercentage / people;
 }
 
+const displaySuggestedTip = function(tip) {
+  const newParagraph = document.createElement("p");
+  const card = document.getElementById("main-card");
+  const para = document.getElementById("output")
+  //Prevent multiple paragraphs
+  if (card.contains(para)){
+    console.log("Some output already. Rewriting");
+    para.innerHTML = `Suggested tip amount for each person is $${suggestion.toFixed(2)}`;
+  } else {
+    //Add new paragraph to contain the suggestion
+    const para = card.appendChild(newParagraph);
+    para.id = "output";
+    para.innerHTML = `Suggested tip amount for each person is $${suggestion.toFixed(2)}`;
+    console.log("Node created");
+  }
+}
+
 const suggestTip = function(){
   const serviceSelectEl = document.getElementById('service');
-  let billamt = document.getElementById('billamt').value.replace(/,/g, '.');
-  let people = document.getElementById('people').value;
+  const billamt = document.getElementById('billamt').value.replace(/,/g, '.');
+  const people = document.getElementById('people').value;
 
-  let suggestion = calculateTip(billamt, people, serviceSelectEl.value)
+  const suggestedTip = calculateTip(billamt, people, serviceSelectEl.value)
 
-  //Output the suggestion in a new paragraph
-  const showOutput = function(suggestion){
-    const newParagraph = document.createElement("p");
-    const card = document.getElementById("main-card");
-    const para = document.getElementById("output")
-    //Prevent multiple paragraphs
-    if (card.contains(para)){
-      console.log("Some output already. Rewriting");
-      para.innerHTML = `Suggested tip amount for each person is $${suggestion.toFixed(2)}`;
-    } else {
-      //Add new paragraph to contain the suggestion
-      const para = card.appendChild(newParagraph);
-      para.id = "output";
-      para.innerHTML = `Suggested tip amount for each person is $${suggestion.toFixed(2)}`;
-      console.log("Node created");
-    }
-  }
-  showOutput(suggestion);
+  displaySuggestedTip(suggestedTip);
 }
 
 document.addEventListener('DOMContentLoaded', initiate);
