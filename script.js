@@ -1,6 +1,3 @@
-const initiate = function(){
-  document.getElementById('calc').addEventListener('click', suggestTip);
-}
 
 // Returns a tip amount multiplier based on string representation
 const getSatisfactionIndex = function(value) {
@@ -32,17 +29,19 @@ const displaySuggestedTip = function(tip) {
   //Prevent multiple paragraphs
   if (card.contains(para)){
     console.log("Some output already. Rewriting");
-    para.innerHTML = `Suggested tip amount for each person is $${suggestion.toFixed(2)}`;
+    para.innerHTML = `Suggested tip amount for each person is $${tip.toFixed(2)}`;
   } else {
     //Add new paragraph to contain the suggestion
     const para = card.appendChild(newParagraph);
     para.id = "output";
-    para.innerHTML = `Suggested tip amount for each person is $${suggestion.toFixed(2)}`;
+    para.innerHTML = `Suggested tip amount for each person is $${tip.toFixed(2)}`;
     console.log("Node created");
   }
 }
 
-const suggestTip = function(){
+// this function is called when the "Calculate!" button is clicked.
+// recalculates suggested value and updates the UI.
+const handleClickOnCalc = function(){
   const serviceSelectEl = document.getElementById('service');
   const billamt = document.getElementById('billamt').value.replace(/,/g, '.');
   const people = document.getElementById('people').value;
@@ -52,4 +51,10 @@ const suggestTip = function(){
   displaySuggestedTip(suggestedTip);
 }
 
-document.addEventListener('DOMContentLoaded', initiate);
+// initialise the app
+document.addEventListener('DOMContentLoaded', function() {
+  const calcButtonEl = document.getElementById('calc');
+  calcButtonEl.addEventListener('click', handleClickOnCalc);
+});
+
+
