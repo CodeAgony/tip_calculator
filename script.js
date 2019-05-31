@@ -16,15 +16,21 @@ const getSatisfactionIndex = function(value) {
   }
 }
 
-//Suggest a tip given the formula: (billamt * service) / people
+// Calculates a tip given the formula: (billamt * service) / people
+const calculateTip = function(billAmount, people, satisfactionValue) {
+  const satisfactionIndex = getSatisfactionIndex(satisfactionValue);
+  const tipPercentage = 0.15 * satisfactionIndex;
+
+  // Take 15% as widely recommended tip amount
+  return billAmount * tipPercentage / people;
+}
+
 const suggestTip = function(){
   const serviceSelectEl = document.getElementById('service');
   let billamt = document.getElementById('billamt').value.replace(/,/g, '.');
   let people = document.getElementById('people').value;
 
-  //Take 15% as widely recommended tip amount
-  const satisfactionIndex = getSatisfactionIndex(serviceSelectEl.value)
-  let suggestion = (((billamt / 100 * 15)  * satisfactionIndex) / people);
+  let suggestion = calculateTip(billamt, people, serviceSelectEl.value)
 
   //Output the suggestion in a new paragraph
   const showOutput = function(suggestion){
