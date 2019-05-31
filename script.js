@@ -1,55 +1,61 @@
-const initiate = function(){
-  document.getElementById('calc').addEventListener('click', suggestTip);
-  document.getElementById('service').addEventListener('change', servSatisfaction);
-}
 
-//Define a tip amount multiplier based on user choice
-const servSatisfaction = function(e){
-  switch(e.target.value) {
+// Returns a tip amount multiplier based on string representation
+const getSatisfactionIndex = function(value) {
+  switch(value) {
     case 'excellent':
-      console.log("exc");
-      return satisfactionIndex = 1.7
+      return 1.7;
     case 'great':
-      console.log("great");
-      return satisfactionIndex = 1.5
+      return 1.5;
     case 'unsatisfactory':
-      console.log("unsatisfactory");
-      return satisfactionIndex = 0.7
-    default: 
-      console.log("default");
-      return satisfactionIndex = 1
+      return 0.7;
+    default:
+      return 1;
   }
-}   
-
-//If servSatisfaction doesn't run, use default value corresponding to 'great'
-let satisfactionIndex = 1.5
-
-//Suggest a tip given the formula: (billamt * service) / people
-const suggestTip = function(){
-  let billamt = document.getElementById('billamt').value.replace(/,/g, '.');
-  let people = document.getElementById('people').value;
-  
-  //Take 15% as widely recommended tip amount
-  let suggestion = (((billamt / 100 * 15)  * satisfactionIndex) / people);
-
-  //Output the suggestion in a new paragraph
-  const showOutput = function(suggestion){
-    const newParagraph = document.createElement("p");
-    const card = document.getElementById("main-card");
-    const para = document.getElementById("output")
-    //Prevent multiple paragraphs
-    if (card.contains(para)){
-      console.log("Some output already. Rewriting");
-      para.innerHTML = `Suggested tip amount for each person is $${suggestion.toFixed(2)}`;
-    } else {
-      //Add new paragraph to contain the suggestion
-      const para = card.appendChild(newParagraph);
-      para.id = "output";
-      para.innerHTML = `Suggested tip amount for each person is $${suggestion.toFixed(2)}`;
-      console.log("Node created");
-    }
-  }
-  showOutput(suggestion);
 }
 
-document.addEventListener('DOMContentLoaded', initiate);
+// Calculates a tip given the formula: (billamt * service) / people
+const calculateTip = function(billAmount, people, satisfactionValue) {
+  const satisfactionIndex = getSatisfactionIndex(satisfactionValue);
+  const tipPercentage = 0.15 * satisfactionIndex;
+
+  // Take 15% as widely recommended tip amount
+  return billAmount * tipPercentage / people;
+}
+
+// updates the UI with suggested tip
+const displaySuggestedTip = function(tip) {
+  // try to find an existing output element or create a new one
+  let outputEl = document.getElementById("output");
+
+  // if an element isn't found, `getElementById` returns null
+  if(!outputEl) {
+    outputEl = document.createElement("p");
+    outputEl.id = "output";
+
+    // put element on a page
+    const outputContainerEl = document.getElementById("main-card");
+    outputContainerEl.appendChild(outputEl);
+  }
+
+  outputEl.innerHTML = `Suggested tip amount for each person is $${tip.toFixed(2)}`;
+}
+
+// this function is called when the "Calculate!" button is clicked.
+// recalculates suggested value and updates the UI.
+const handleClickOnCalc = function(){
+  const serviceSelectEl = document.getElementById('service');
+  const billamt = document.getElementById('billamt').value.replace(/,/g, '.');
+  const people = document.getElementById('people').value;
+
+  const suggestedTip = calculateTip(billamt, people, serviceSelectEl.value)
+
+  displaySuggestedTip(suggestedTip);
+}
+
+// initialise the app
+document.addEventListener('DOMContentLoaded', function() {
+  const calcButtonEl = document.getElementById('calc');
+  calcButtonEl.addEventListener('click', handleClickOnCalc);
+});
+
+
