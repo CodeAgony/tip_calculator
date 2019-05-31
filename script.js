@@ -22,21 +22,22 @@ const calculateTip = function(billAmount, people, satisfactionValue) {
   return billAmount * tipPercentage / people;
 }
 
+// updates the UI with suggested tip
 const displaySuggestedTip = function(tip) {
-  const newParagraph = document.createElement("p");
-  const card = document.getElementById("main-card");
-  const para = document.getElementById("output")
-  //Prevent multiple paragraphs
-  if (card.contains(para)){
-    console.log("Some output already. Rewriting");
-    para.innerHTML = `Suggested tip amount for each person is $${tip.toFixed(2)}`;
-  } else {
-    //Add new paragraph to contain the suggestion
-    const para = card.appendChild(newParagraph);
-    para.id = "output";
-    para.innerHTML = `Suggested tip amount for each person is $${tip.toFixed(2)}`;
-    console.log("Node created");
+  // try to find an existing output element or create a new one
+  let outputEl = document.getElementById("output");
+
+  // if an element isn't found, `getElementById` returns null
+  if(!outputEl) {
+    outputEl = document.createElement("p");
+    outputEl.id = "output";
+
+    // put element on a page
+    const outputContainerEl = document.getElementById("main-card");
+    outputContainerEl.appendChild(outputEl);
   }
+
+  outputEl.innerHTML = `Suggested tip amount for each person is $${tip.toFixed(2)}`;
 }
 
 // this function is called when the "Calculate!" button is clicked.
